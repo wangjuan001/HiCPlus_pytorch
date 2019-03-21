@@ -70,7 +70,8 @@ low_resolution_samples, index = utils.divide(inputMatrix)
 
 low_resolution_samples = np.minimum(HiC_max_value, low_resolution_samples)
 
-batch_size = low_resolution_samples.shape[0]
+batch_size = 256 #low_resolution_samples.shape[0]
+
 
 # Reshape the high-quality Hi-C sample as the target value of the training. 
 sample_size = low_resolution_samples.shape[-1]

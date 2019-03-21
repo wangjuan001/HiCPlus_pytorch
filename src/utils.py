@@ -55,7 +55,7 @@ def divide(HiCmatrix):
     step = 25
     result = []
     index = []
-    chrN = 21
+    chrN = 21  ##need to change.
 
     total_loci = HiCmatrix.shape[0]
     for i in range(0, total_loci, step):
