@@ -29,12 +29,12 @@ parser.add_argument('--model', type=str, required=True, help='model file to use'
 #parser.add_argument('--output_filename', type=str, help='where to save the output image')
 #parser.add_argument('--scale_factor', type=float, help='factor by which super resolution needed')
 #parser.add_argument('--chr', type=int,required=True, help='chromosome number')
-parser.add_argument('--cuda', action='store_true', help='use cuda')
+#parser.add_argument('--cuda', action='store_true', help='use cuda')
 opt = parser.parse_args()
 
 print(opt)
 
-use_gpu = opt.cuda
+use_gpu = 0 #opt.cuda
 if use_gpu and not torch.cuda.is_available():
     raise Exception("No GPU found, please run without --cuda")
 
@@ -70,7 +70,7 @@ low_resolution_samples, index = utils.divide(inputMatrix)
 
 low_resolution_samples = np.minimum(HiC_max_value, low_resolution_samples)
 
-batch_size = 256 #low_resolution_samples.shape[0]
+batch_size = low_resolution_samples.shape[0] #256
 
 
 # Reshape the high-quality Hi-C sample as the target value of the training. 
@@ -78,7 +78,7 @@ sample_size = low_resolution_samples.shape[-1]
 padding = conv2d1_filters_size + conv2d2_filters_size + conv2d3_filters_size - 3
 half_padding = padding / 2
 output_length = sample_size - padding
-
+#print(output_length)
 
 print(low_resolution_samples.shape)
 
@@ -98,28 +98,16 @@ if use_gpu:
 #running_loss = 0.0
 #running_loss_validate = 0.0
 #reg_loss = 0.0
-
-
-for i, (v1, v2) in enumerate(zip(lowres_loader, hires_loader)):    
+for i, v1 in enumerate(lowres_loader):
     _lowRes, _ = v1
-    _highRes, _ = v2
-
     _lowRes = Variable(_lowRes).float()
-    _highRes = Variable(_highRes).float()
-
-    
     if use_gpu:
         _lowRes = _lowRes.cuda()
-        _highRes = _highRes.cuda()
     y_prediction = model(_lowRes)
 
-    
-#print '-------', i, running_loss, strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 
 y_predict = y_prediction.data.cpu().numpy()
-
-
 print(y_predict.shape)
 
 # recombine samples
@@ -149,7 +137,6 @@ np.save(input_file + 'enhanced.npy', prediction_1)
 print(datetime.now() - startTime) 
 
 np.savetxt(input_file + 'enhanced.txt',prediction_1, fmt='%d', delimiter="\t")
-
 
 
 
