@@ -24,10 +24,12 @@ def readSparseMatrix(infile, total_length, resolution):
             print('finish ', percentage_finish, '%')
             percentage_finish += 10
         nums = infile[i].split('\t')
-        x = int(int(nums[0])/resolution)
-        y = int(int(nums[1])/resolution)
-        val = int(float(nums[2]))
-
+        try: 
+            x = int(int(nums[0])/resolution)
+            y = int(int(nums[1])/resolution)
+            val = int(float(nums[2]))
+        except ValueError:
+            pass
         HiC[x][y] = val
         HiC[y][x] = val
     print(HiC.shape)
