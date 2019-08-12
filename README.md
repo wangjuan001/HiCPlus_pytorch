@@ -23,6 +23,8 @@ If the user doesn't train the model, just use [runHiCPlus.py](https://github.com
 ### Training
 In the training stage, both high-resolution Hi-C samples and low-resolution Hi-C samples are needed. Two samples should be in the same shape as (N, 1, n, n), where N is the number of the samples, and n is the size of the samples. The sample index of the sample should be from the sample genomic location in two input data sets. 
 
+We provided a training pipeline for convenient usage. This pipeline will automatically extract GM12878 chr21 10kb resolution matrix from juicer.
+
 ### Prediction
 Only low-resolution Hi-C samples are needed. The shape of the samples should be the same with the training stage. The prediction generates the enhanced Hi-C data, and the user should recombine the output to obtain the entire Hi-C matrix. 
 
