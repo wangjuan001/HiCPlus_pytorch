@@ -5,13 +5,13 @@ Impletmented by PyTorch
 
 * [Python] (https://www.python.org) (2.7) with Numpy and Scipy. We recommand use the  [Anaconda] (https://www.continuum.io) distribution to install Python. 
 
-* [PyTorch] (https://http://pytorch.org/) (0.1.12_2). GPU acceleration is not required but strongly recommended. 
+* [PyTorch] (https://http://pytorch.org/) (0.1.12_2/0.2.0). GPU acceleration is not required but strongly recommended. 
 
 ## Installation
 Clone the repo to your local folder. 
 
 ```
-$ git clone https://github.com/zhangyan32/HiCPlus_pytorch.git
+$ git clone https://github.com/wangjuan001/HiCPlus_pytorch.git
 
 ```
 ## Usage
