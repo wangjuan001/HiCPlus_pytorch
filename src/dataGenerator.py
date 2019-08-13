@@ -10,7 +10,7 @@ from math import log10
 import utils
 #import model
 import argparse
-#import trainConvNet
+import trainConvNet
 import numpy as np
 
 chrs_length = [249250621,243199373,198022430,191154276,180915260,171115067,159138663,146364022,141213431,135534747,135006516,133851895,115169878,107349540,102531392,90354753,81195210,78077248,59128983,63025520,48129895,51304566]
@@ -24,7 +24,7 @@ parser.add_argument('--input_file', type=str, required=True, help='input trainin
 parser.add_argument('--chrN', type=int, required=True, help='chromosome used to train')
 #parser.add_argument('--output_filename', type=str, help='where to save the output image')
 parser.add_argument('--scale_factor', type=float, required=True, help='factor by which resolution needed')
-
+parser.add_argument('--out_model', type=str, help='output the models')
 #parser.add_argument('--cuda', action='store_true', help='use cuda')
 opt = parser.parse_args()
 
@@ -37,6 +37,7 @@ print(opt)
 infile = opt.input_file
 chrN = opt.chrN
 scale = opt.scale_factor
+outModel = opt.out_model
 
 print('read in files...')
 
@@ -44,19 +45,19 @@ highres = utils.readFiles(infile, chrs_length[chrN-1]/input_resolution + 1, inpu
 
 print('dividing, filtering and downsampling files...')
 
-highres_sub, index = utils.divide(highres,chrN)
+highres_sub, index = utils.divide(highres, chrN)
 
 
 print(highres_sub.shape)
 np.save(infile+"highres",highres_sub)
 
 lowres = utils.genDownsample(highres,1/float(scale))
-lowres_sub,index = utils.divide(lowres,chrN)
+lowres_sub,index = utils.divide(lowres, chrN)
 print(lowres_sub.shape)
 np.save(infile+"lowres",lowres_sub)
 
 print('start training...')
-trainConvNet.train(lowres_sub,highres_sub)
+trainConvNet.train(lowres_sub,highres_sub,outModel)
 
 
 print('finished...')

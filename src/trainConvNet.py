@@ -15,6 +15,7 @@ from torch.autograd import Variable
 from time import gmtime, strftime
 import sys
 import torch.nn as nn
+import argparse
 
 use_gpu = 1
 
@@ -50,7 +51,7 @@ batch_size = 512
 #low_resolution_samples = np.load(gzip.GzipFile('/home/zhangyan/SRHiC_samples/IMR90_down_HINDIII16_chr1_8.npy.gz', "r")).astype(np.float32) * down_sample_ratio
 #high_resolution_samples = np.load(gzip.GzipFile('/home/zhangyan/SRHiC_samples/original10k/_IMR90_HindIII_original_chr1_8.npy.gz', "r")).astype(np.float32)
 
-def train(lowres,highres):
+def train(lowres,highres, outModel="model"):
     low_resolution_samples = lowres.astype(np.float32) * down_sample_ratio
 
     high_resolution_samples = highres.astype(np.float32) 
@@ -95,7 +96,7 @@ def train(lowres,highres):
 
     # write the log file to record the training process
     log = open('HindIII_train.txt', 'w')
-    for epoch in range(0, 100000):
+    for epoch in range(0, 10000):
         for i, (v1, v2) in enumerate(zip(lowres_loader, hires_loader)):    
             if (i == len(lowres_loader) - 1):
                 continue 
@@ -127,7 +128,7 @@ def train(lowres,highres):
         running_loss_validate = 0.0
         # save the model every 100 epoches
         if (epoch % 100 == 0):
-            torch.save(Net.state_dict(), 'pytorch_HindIII_model_' + str(epoch))
+            torch.save(Net.state_dict(), outModel + str(epoch) + str('.model'))
             pass
 
 

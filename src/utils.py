@@ -52,12 +52,12 @@ def readSquareMatrix(infile, total_length):
     return result
 
 
-def divide(HiCmatrix):
+def divide(HiCmatrix,chrN):
     subImage_size = 40
     step = 25
     result = []
     index = []
-    chrN = 21  ##need to change.
+#    chrN = 21  ##need to change.
 
     total_loci = HiCmatrix.shape[0]
     for i in range(0, total_loci, step):
