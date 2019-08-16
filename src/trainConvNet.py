@@ -96,8 +96,8 @@ def train(lowres,highres, outModel="model"):
 
     # write the log file to record the training process
     with open('HindIII_train.txt', 'w') as log:
-	for epoch in range(0, 10000):
-	    for i, (v1, v2) in enumerate(zip(lowres_loader, hires_loader)):    
+        for epoch in range(0, 10000):
+            for i, (v1, v2) in enumerate(zip(lowres_loader, hires_loader)):    
 		if (i == len(lowres_loader) - 1):
 		    continue 
 		_lowRes, _ = v1
