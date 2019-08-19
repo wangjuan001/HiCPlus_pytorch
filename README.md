@@ -25,6 +25,8 @@ In the training stage, both high-resolution Hi-C samples and low-resolution Hi-C
 
 We provided a training pipeline for convenient usage [dataGenerator.py](https://github.com/wangjuan001/HiCPlus_pytorch/blob/master/src/dataGenerator.py). 
 
+This also includes the training dataset generating steps. All you need to do is to provide the high resolution matrix data (both sparse, dense matrix are fine), specify the chromosome number, downsampling rate(default : 16), the name of output model name (default: 80M_model).
+
 example: 
 ```
 python dataGenerator.py --input_file chr22.10k.obs.gm12878.matrix --chrN 22 --scale_factor 60 --out_model 80M_model
