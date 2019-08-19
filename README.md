@@ -24,9 +24,12 @@ If the user doesn't train the model, just use [runHiCPlus.py](https://github.com
 In the training stage, both high-resolution Hi-C samples and low-resolution Hi-C samples are needed. Two samples should be in the same shape as (N, 1, n, n), where N is the number of the samples, and n is the size of the samples. The sample index of the sample should be from the sample genomic location in two input data sets. 
 
 We provided a training pipeline for convenient usage [dataGenerator.py](https://github.com/wangjuan001/HiCPlus_pytorch/blob/master/src/dataGenerator.py). 
+
 example: 
+```
 python dataGenerator.py --input_file chr22.10k.obs.gm12878.matrix --chrN 22 --scale_factor 60 --out_model 80M_model
 
+```
 ### Prediction
 Only low-resolution Hi-C samples are needed. The shape of the samples should be the same with the training stage. The prediction generates the enhanced Hi-C data, and the user should recombine the output to obtain the entire Hi-C matrix. 
 
