@@ -66,7 +66,7 @@ input_file = opt.input_matrix
 
 inputMatrix = utils.readFiles(input_file, length + 1, expRes)
 
-low_resolution_samples, index = utils.divide(inputMatrix)
+low_resolution_samples, index = utils.divide(inputMatrix,chrN)
 
 low_resolution_samples = np.minimum(HiC_max_value, low_resolution_samples)
 
