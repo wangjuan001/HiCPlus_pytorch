@@ -28,7 +28,7 @@ parser.add_argument('--input_matrix', type=str, required=True, help='input matri
 parser.add_argument('--model', type=str, required=True, help='model file to use')
 #parser.add_argument('--output_filename', type=str, help='where to save the output image')
 #parser.add_argument('--scale_factor', type=float, help='factor by which super resolution needed')
-#parser.add_argument('--chr', type=int,required=True, help='chromosome number')
+parser.add_argument('--chr', type=int,required=True, help='chromosome number')
 #parser.add_argument('--cuda', action='store_true', help='use cuda')
 opt = parser.parse_args()
 
@@ -55,7 +55,7 @@ HiC_max_value = 100
 
 chrs_length = [249250621,243199373,198022430,191154276,180915260,171115067,159138663,146364022,141213431,135534747,135006516,133851895,115169878,107349540,102531392,90354753,81195210,78077248,59128983,63025520,48129895,51304566]
 
-chrN = 21
+chrN = opt.chr
 
 expRes = 10000
 ## need to make resolution adjustable.
