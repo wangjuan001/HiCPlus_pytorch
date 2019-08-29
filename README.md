@@ -35,6 +35,12 @@ python dataGenerator.py --input_file chr22.10k.obs.gm12878.matrix --chrN 22 --sc
 ### Prediction
 Only low-resolution Hi-C samples are needed. The shape of the samples should be the same with the training stage. The prediction generates the enhanced Hi-C data, and the user should recombine the output to obtain the entire Hi-C matrix. 
 
+example:
+```
+python runHiCplus.py --input_matrix Matrixfile --model ../model/pytorch_gm12878_chr21_model_3900 --chr 1
+
+```
+
 ### Suggested way to generate samples
 We suggest that generate a file containing the location of each samples when generate the samples with n x n size. Therefore, after obtaining the high-resolution Hi-C, it is easy to recombine all of the samples to obtain high-resolution Hi-C matrix. 
 
