@@ -3,9 +3,9 @@ Impletmented by PyTorch
 
 ## Dependency
 
-* [Python] (https://www.python.org) (2.7) with Numpy and Scipy. We recommand use the  [Anaconda] (https://www.continuum.io) distribution to install Python. 
+* [Python] (https://www.python.org) (2.7/3.6) with Numpy and Scipy. We recommand use the  [Anaconda] (https://www.continuum.io) distribution to install Python. 
 
-* [PyTorch] (https://http://pytorch.org/) (0.1.12_2/0.2.0). GPU acceleration is not required but strongly recommended. 
+* [PyTorch] (https://http://pytorch.org/) (> 0.4.0). GPU acceleration is not required but strongly recommended. 
 
 ## Installation
 Clone the repo to your local folder. 
@@ -38,6 +38,15 @@ Only low-resolution Hi-C samples are needed. The shape of the samples should be 
 example:
 ```
 python runHiCplus.py --input_matrix Matrixfile --model ../model/pytorch_gm12878_chr21_model_3900 --chr 1
+
+```
+
+### Input file generate
+You can input both dense and sparse matrix file. An easy way to generate a test data is to use juicer. 
+e.g.  
+```
+
+java -jar juicer_tools.jar dump observed KR https://hicfiles.s3.amazonaws.com/hiseq/gm12878/in-situ/combined.hic 1:20480000:40960000 1:20480000:40960000 BP 10000 combined_10Kb.txt
 
 ```
 
