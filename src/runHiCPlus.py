@@ -136,7 +136,7 @@ np.save(input_file + 'enhanced.npy', prediction_1)
 
 print(datetime.now() - startTime) 
 
-np.savetxt(input_file + 'enhanced.txt',prediction_1, fmt='%d', delimiter="\t")
+#np.savetxt(input_file + 'enhanced.txt',prediction_1, fmt='%d', delimiter="\t")
 
 
 
