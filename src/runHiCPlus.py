@@ -59,7 +59,7 @@ chrN = opt.chr
 
 expRes = 10000
 ## need to make resolution adjustable.
-length = chrs_length[chrN-1]/expRes
+length = chrs_length[chrN-1]//expRes
 
 # divide the input matrix into sub-matrixes. 
 input_file = opt.input_matrix
@@ -88,7 +88,7 @@ lowres_loader = torch.utils.data.DataLoader(lowres_set, batch_size=batch_size, s
 hires_loader = lowres_loader
 
 model = model.Net(40, 28)
-model.load_state_dict(torch.load(opt.model))
+model.load_state_dict(torch.load(opt.model,map_location=torch.device('cpu')))
 if use_gpu:
     model = model.cuda()
 
