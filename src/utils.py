@@ -62,7 +62,7 @@ def divide(HiCmatrix,chrN):
     total_loci = HiCmatrix.shape[0]
     for i in range(0, total_loci, step):
         for j in range(0, total_loci, ):
-            if (i + subImage_size >= total_loci or j + subImage_size >= total_loci):
+            if (abs(i-j) > 201 or i + subImage_size >= total_loci or j + subImage_size >= total_loci):
                 continue
             subImage = HiCmatrix[i:i + subImage_size, j:j + subImage_size]
 
