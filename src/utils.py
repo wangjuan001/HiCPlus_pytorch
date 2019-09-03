@@ -6,7 +6,7 @@ import random
 def readFiles(filename, total_length, resolution):
     print("reading HiC input data")
     infile = open(filename).readlines()
-    if len(infile[1].split("\t")) == 3:
+    if len(infile[1].split()) == 3:
         res = readSparseMatrix(infile, total_length, resolution)
         np.savetxt(filename+'square.txt', res, delimiter = '\t', fmt = '%d')
     else:
@@ -23,15 +23,15 @@ def readSparseMatrix(infile, total_length, resolution):
         if (i % (len(infile) / 10) == 0):
             print('finish ', percentage_finish, '%')
             percentage_finish += 10
-        nums = infile[i].split('\t')
-        try: 
+        nums = infile[i].split()
+        try:
             x = int(int(nums[0])/resolution)
             y = int(int(nums[1])/resolution)
             val = int(float(nums[2]))
+            HiC[x][y] = val
+            HiC[y][x] = val
         except ValueError:
             pass
-        HiC[x][y] = val
-        HiC[y][x] = val
     print(HiC.shape)
     return HiC
 
@@ -43,7 +43,7 @@ def readSquareMatrix(infile, total_length):
     print('number of the bins based on the length of chromsomes is ' + str(total_length))
     result = []
     for line in infile:
-        tokens = line.split('\t')
+        tokens = line.split()
         line_num = list(map(float, tokens))
         line_int = list(map(round, line_num))
         result.append(line_int)
