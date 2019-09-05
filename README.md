@@ -3,7 +3,7 @@ Impletmented by PyTorch
 
 ## Dependency
 
-* [Python] (https://www.python.org) (2.7/3.6) with Numpy and Scipy. We recommand use the  [Anaconda] (https://www.continuum.io) distribution to install Python. 
+* [Python] (https://www.python.org) (3.6) with Numpy and Scipy. We recommand use the  [Anaconda] (https://www.continuum.io) distribution to install Python. 
 
 * [PyTorch] (https://http://pytorch.org/) (> 0.4.0). GPU acceleration is not required but strongly recommended. 
 
@@ -40,6 +40,9 @@ example:
 python runHiCplus.py --input_matrix Matrixfile --model ../model/pytorch_gm12878_chr21_model_3900 --chr 1
 
 ```
+
+### Models 
+Models provided here are all suitable for prediction of 200M-400M sequencing depth HiC data, as the model was trained from ~4.6B GM12878 (Rao et al) at downsampling rate 16. We suggest you to generate your own model based on your own needs. 
 
 ### Input file generate
 You can input both dense and sparse matrix file. An easy way to generate a test data is to use juicer. 
